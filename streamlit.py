@@ -25,7 +25,7 @@ def main():
 
     tfidf_matrix = vectorizer.transform(df['Title'])
 
-    user_input = st.text_input("Enter your your topic realated string:")
+    user_input = st.text_input("#### Enter your your topic realated string:")
 
     if user_input:
         try:
