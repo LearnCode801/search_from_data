@@ -45,7 +45,11 @@ def main():
             top_n=3
             top_related_articles = get_top_related_articles(user_input, df, vectorizer, tfidf_matrix,top_n)
             st.write(f"### {top_n} - Top Related Articles")
-            st.write(top_related_articles[['Title', 'Content', 'Author URL', 'Date', 'Image URL']])
+            data_dict = top_related_articles.to_dict(orient='records')
+            st.write("#### Responce in Json")
+            st.write(data_dict)
+            st.write("#### Showing the Result in Table-Formate")
+            st.write(top_related_articles[['Title','Content','Headings','Author URL','Read Time','Date','Image URL']])
         except KeyError as e:
             st.error("Error: " + str(e))
 
