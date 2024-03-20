@@ -29,7 +29,7 @@ def main():
     # File upload
 
     
-    df = pd.read_csv("/medium.csv",encoding="latin1")
+    df = pd.read_csv("medium.csv",encoding="latin1")
     df=df[['Title','Content','Headings','Author URL','Read Time','Date','Image URL']]
     df.dropna(subset = ['Title'], inplace=True)
     st.write(df)
