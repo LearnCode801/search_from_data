@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-with open('/tfidf_vectorizer.pkl', 'rb') as file:
+with open('tfidf_vectorizer.pkl', 'rb') as file:
     vectorizer = pickle.load(file)
 
 def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
