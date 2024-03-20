@@ -8,17 +8,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 with open('tfidf_vectorizer.pkl', 'rb') as file:
     vectorizer = pickle.load(file)
 
-def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
-    # Transform user input
+def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
     user_input_tfidf = vectorizer.transform([user_input])
 
-    # Compute cosine similarity between user input and article titles
+    
     cosine_similarities = cosine_similarity(user_input_tfidf, tfidf_matrix).flatten()
 
-    # Get indices of top related articles
+    
     top_indices = cosine_similarities.argsort()[-top_n:][::-1]
 
-    # Get top related articles
+  
     top_related_articles = df.iloc[top_indices]
 
     return top_related_articles
@@ -26,7 +25,7 @@ def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
 def main():
     st.write('### Article Search Based on the "Title Similarity Search"')
 
-    # File upload
+    
 
     
     df = pd.read_csv("medium.csv",encoding="latin1")
