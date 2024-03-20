@@ -16,7 +16,8 @@ def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
     return top_related_articles
 
 def main():
-    st.write('### Article Search Based on the "Title Similarity Search"')
+    st.write('### Article Search Based on the "Title Similarity Search"')
+    st.write('### Whole Scrape Data') 
     df = pd.read_csv("medium.csv",encoding="latin1")
     df=df[['Title','Content','Headings','Author URL','Read Time','Date','Image URL']]
     df.dropna(subset = ['Title'], inplace=True)
