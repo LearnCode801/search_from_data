@@ -9,17 +9,10 @@ with open('tfidf_vectorizer.pkl', 'rb') as file:
     vectorizer = pickle.load(file)
 
 def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
-    user_input_tfidf = vectorizer.transform([user_input])
-
-    
-    cosine_similarities = cosine_similarity(user_input_tfidf, tfidf_matrix).flatten()
-
-    
-    top_indices = cosine_similarities.argsort()[-top_n:][::-1]
-
-  
-    top_related_articles = df.iloc[top_indices]
-
+    user_input_tfidf = vectorizer.transform([user_input])
+    cosine_similarities = cosine_similarity(user_input_tfidf, tfidf_matrix).flatten()
+    top_indices = cosine_similarities.argsort()[-top_n:][::-1]
+    top_related_articles = df.iloc[top_indices]
     return top_related_articles
 
 def main():
