@@ -15,10 +15,13 @@ github_link = "[GitHub](https://github.com/LearnCode801)"
 linkedin_link = "[LinkedIn](https://www.linkedin.com/in/muhammad-talha-806126234/)"
 
 # st.markdown(hide_st_style, unsafe_allow_html=True)
-st.markdown(
-    f'<div style="position: fixed; bottom: 10px; right: 10px;">{github_link} | {linkedin_link}</div>',
-    unsafe_allow_html=True
-)
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+# Your Streamlit app content here
+
+st.sidebar.markdown(github_link, unsafe_allow_html=True)
+st.sidebar.markdown(linkedin_link, unsafe_allow_html=True)
+
 with open('tfidf_vectorizer.pkl', 'rb') as file:
     vectorizer = pickle.load(file)
 
