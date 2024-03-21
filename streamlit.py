@@ -14,7 +14,7 @@ hide_st_style = """
 github_link = "[GitHub](https://github.com/LearnCode801)"
 linkedin_link = "[LinkedIn](https://www.linkedin.com/in/muhammad-talha-806126234/)"
 
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
 st.markdown(
     f'<div style="position: fixed; bottom: 10px; right: 10px;">{github_link} | {linkedin_link}</div>',
     unsafe_allow_html=True
