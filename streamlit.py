@@ -11,19 +11,22 @@ hide_st_style = """
             header {visibility: hidden;}
             </style>
             """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+github_link = "[GitHub](https://github.com/your_username)"
+linkedin_link = "[LinkedIn](https://www.linkedin.com/in/your_profile)"
 
-with open('D:/6thSemester/Data Warehousing/Assignemts/app on streamlit/tfidf_vectorizer.pkl', 'rb') as file:
+st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown(
+    f'<div style="position: fixed; bottom: 10px; right: 10px;">{github_link} | {linkedin_link}</div>',
+    unsafe_allow_html=True
+)
+with open('tfidf_vectorizer.pkl', 'rb') as file:
     vectorizer = pickle.load(file)
 
 def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
 
     user_input_tfidf = vectorizer.transform([user_input])
-
     cosine_similarities = cosine_similarity(user_input_tfidf, tfidf_matrix).flatten()
-
     top_indices = cosine_similarities.argsort()[-top_n:][::-1]
-
     top_related_articles = df.iloc[top_indices]
 
     return top_related_articles
@@ -31,7 +34,7 @@ def get_top_related_articles(user_input, df, vectorizer, tfidf_matrix, top_n):
 def main():
     st.write('## Title Quest: Discovering Articles through Title Similarity')
     st.write('### Whole Scrape Data') 
-    df = pd.read_csv("D:/6thSemester/Data Warehousing/Assignemts/app on streamlit/medium.csv",encoding="latin1")
+    df = pd.read_csv("medium.csv",encoding="latin1")
     df=df[['Title','Content','Headings','Author URL','Read Time','Date','Image URL']]
     df.dropna(subset = ['Title'], inplace=True)
     st.write(df)
@@ -42,18 +45,14 @@ def main():
 
     if user_input:
         try:
-            # Create a one-row, two-column layout with equal width
             col1, col2 = st.columns(2)
 
-            # In the first column, display the number input widget
             with col1:
                 top_n = st.number_input("Number of responses:", min_value=1, value=1, step=1)
 
-            # In the second column, display the multiselect widget
             with col2:
                 selected_columns = st.multiselect("Select columns to display:", df.columns, default=['Title', 'Content'])
 
-            # If no columns are selected, default to selecting 'Title' and 'Content'
             if not selected_columns:
                 selected_columns = ['Title', 'Content']
 
